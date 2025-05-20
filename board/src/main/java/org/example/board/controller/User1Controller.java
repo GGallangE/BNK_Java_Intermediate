@@ -27,4 +27,24 @@ public class User1Controller {
 
         return "/user1/register";
     }
+
+    @GetMapping("/user1/list")
+    public String list(){
+        return "/user1/list";
+    }
+
+    @GetMapping("/user1/modify")
+    public String modify(){
+        return "/user1/modify";
+    }
+
+    @PostMapping("/user1/modify")
+    public String modify(User1DTO user1DTO){
+
+        System.out.println(user1DTO);
+
+        user1Service.insertUser1(user1DTO);
+
+        return "/user1/register";
+    }
 }
