@@ -1,0 +1,79 @@
+package sub5;
+
+
+interface Coffee {
+    String getDescription();
+    int getCost();
+}
+
+class SimpleCoffee implements Coffee {
+    @Override
+    public String getDescription() {
+        return "Simple Coffee";
+    }
+
+    @Override
+    public int getCost() {
+        return 1500;
+    }
+}
+
+interface CoffeeDecorator extends Coffee {
+    String getSize();
+}
+
+class MilkDecorator implements CoffeeDecorator {
+    private Coffee coffee;
+
+    public MilkDecorator(Coffee coffee) {
+        this.coffee = coffee;
+    }
+
+    @Override
+    public String getDescription() {
+        return coffee.getDescription() + ", Milk";
+    }
+
+    @Override
+    public int getCost() {
+        return coffee.getCost() + 500;
+    }
+
+    @Override
+    public String getSize() {
+        return "Tall";
+    }
+}
+
+class SugarDecorator implements CoffeeDecorator {
+    private Coffee coffee;
+
+    public SugarDecorator(Coffee coffee) {
+        this.coffee = coffee;
+    }
+
+    @Override
+    public String getDescription() {
+        return coffee.getDescription() + ", Sugar";
+    }
+
+    @Override
+    public int getCost() {
+        return coffee.getCost() + 100;
+    }
+
+    @Override
+    public String getSize() {
+        return "Large";
+    }
+}
+
+
+
+public class Ex2_Decorator {
+    public static void main(String[] args) {
+
+        Coffee simpleCoffee = new SimpleCoffee();
+
+    }
+}
