@@ -27,11 +27,11 @@ public class User1Service {
         return user1DAO.selectAllUser1();
     }
 
-    public void updateUser1(){
-        user1DAO.updateUser1();
+    public void updateUser1(User1DTO user1DTO) {
+        user1DAO.updateUser1(user1DTO);
     }
 
-    public void deleteUser1(){
-        user1DAO.deleteUser1();
+    public void deleteUser1(int no){
+        user1DAO.deleteUser1(no);
     }
 }

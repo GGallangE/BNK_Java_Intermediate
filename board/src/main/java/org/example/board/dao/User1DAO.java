@@ -20,7 +20,7 @@ public class User1DAO {
             Connection conn = DriverManager.getConnection(host, user, pass);
 
             // SQL 객체 생성 및 데이터 매핑
-            String sql = "INSERT INTO user1 (name, birth, age, addr) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO member (name, birth, age, addr) VALUES (?,?,?,?)";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setString(1, user1DTO.getName());
             psmt.setString(2, user1DTO.getBirth());
@@ -49,7 +49,7 @@ public class User1DAO {
         try{
             Connection conn = DriverManager.getConnection(host, user, pass);
 
-            String sql = "select * from user1 where no = ?";
+            String sql = "select * from member where no = ?";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setInt(1, no);
 
@@ -83,7 +83,7 @@ public class User1DAO {
         try {
             Connection conn = DriverManager.getConnection(host, user, pass);
 
-            String sql = "SELECT * FROM user1";
+            String sql = "SELECT * FROM member";
             Statement stmt = conn.createStatement();
 
             // SQL 실행 후 결과셋 처리
@@ -116,12 +116,46 @@ public class User1DAO {
         return user1DTOS;
     }
 
-    public void updateUser1(){
+    public void updateUser1(User1DTO user1DTO) {
 
-        //UPDATE user1 SET name=?, birth=?, age=?, addr=? WHERE no = ?;
+        try{
+            Connection conn = DriverManager.getConnection(host, user, pass);
+
+            String sql = "UPDATE member SET name=?, birth=?, age=?, addr=? WHERE no = ?";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1, user1DTO.getName());
+            psmt.setString(2, user1DTO.getBirth());
+            psmt.setInt(3, user1DTO.getAge());
+            psmt.setString(4, user1DTO.getAddr());
+            psmt.setInt(5, user1DTO.getNo());
+
+            psmt.executeUpdate();
+
+            psmt.close();
+            conn.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        //
     }
 
-    public void deleteUser1(){}
+    public void deleteUser1(int no){
+        try {
+            Connection conn = DriverManager.getConnection(host, user, pass);
+
+            String sql = "DELETE FROM member WHERE no = ?";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, no);
+
+            psmt.executeUpdate();
+
+            psmt.close();
+            conn.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

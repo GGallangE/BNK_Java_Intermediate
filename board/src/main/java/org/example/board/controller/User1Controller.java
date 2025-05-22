@@ -43,11 +43,6 @@ public class User1Controller {
         return "/user1/list";
     }
 
-
-
-
-
-
     @GetMapping("/user1/modify")
     public String modify(int no, Model model){ // no 파라미터 수신
         System.out.println("no : " + no);
@@ -58,4 +53,20 @@ public class User1Controller {
         return "/user1/modify";
     }
 
+    @PostMapping("/user1/modify")
+    public String modify(User1DTO user1DTO){
+        System.out.println(user1DTO);
+
+        user1Service.updateUser1(user1DTO);
+        return "redirect:/user1/list";
+    }
+
+    @GetMapping("/user1/delete")
+    public String delete(int no){
+        System.out.println("no : " + no);
+
+        user1Service.deleteUser1(no);
+
+        return "redirect:/user1/list";
+    }
 }
