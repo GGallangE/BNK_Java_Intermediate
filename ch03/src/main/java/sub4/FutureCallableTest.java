@@ -3,14 +3,15 @@ package sub4;
 import java.util.concurrent.*;
 
 public class FutureCallableTest {
+
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
         Callable<Integer> task1 = () -> {
             try {
                 Thread.sleep(1000);
-            }catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             System.out.println("task1 done");
@@ -20,7 +21,7 @@ public class FutureCallableTest {
         Callable<Integer> task2 = () -> {
             try {
                 Thread.sleep(2000);
-            }catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             System.out.println("task2 done");
@@ -38,7 +39,6 @@ public class FutureCallableTest {
         // 작업 결과 확인
         System.out.println("result1: " + result1);
         System.out.println("result2: " + result2);
-
 
     }
 }

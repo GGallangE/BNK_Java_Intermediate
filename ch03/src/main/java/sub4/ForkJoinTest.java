@@ -1,13 +1,15 @@
 package sub4;
 
+
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
 class SumTask extends RecursiveTask<Long> {
-    private long[] array;
-    private int start;
-    private int end;
-    private final int THRESHOLD = 100;
+
+
+    private final long[] array;
+    private final int start, end;
+    private final int THRESHOLD = 100; // 작업 분할 기준
 
     public SumTask(long[] array, int start, int end) {
         this.array = array;
@@ -17,38 +19,38 @@ class SumTask extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
+
         int length = end - start;
 
         // Fork/Join 분할 작업
-        if (length < THRESHOLD) {
+        if(length < THRESHOLD) {
             long sum = 0;
             for (int i = start; i < end; i++) {
                 sum += array[i];
             }
-
             return sum;
-        }else{
+        }else {
             int middle = (start + end) / 2;
 
-            SumTask lefttask = new SumTask(array, start, middle);
-            SumTask righttask = new SumTask(array, middle, end);
+            SumTask leftTask = new SumTask(array, start, middle);
+            SumTask rightTask = new SumTask(array, middle, end);
 
-            lefttask.fork();
+            leftTask.fork();
 
-            long rightSum = righttask.compute();
-            long leftSum = lefttask.join();
+            long rightSum = rightTask.compute();
+            long leftSum = leftTask.join();
 
             return leftSum + rightSum;
         }
-    };
+    }
 }
 
 public class ForkJoinTest {
     public static void main(String[] args) {
 
-        long [] numbers = new long[1000];
+        long[] numbers = new long[1000];
 
-        for (int i = 0; i < numbers.length; i++) {
+        for(int i=0 ; i<numbers.length ; i++) {
             numbers[i] = i + 1;
         }
 
@@ -66,4 +68,5 @@ public class ForkJoinTest {
         // 스레드풀 종료
         pool.shutdown();
     }
+
 }
