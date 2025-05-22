@@ -2,36 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>modify</title>
+    <title>user1</title>
 </head>
 <body>
-  <h3>user1 수정</h3>
-  <a href = "/user1/list">목록 보기</a>
-  <form action="/user1/modify" method="post">
-      <table border="1">
-          <tr>
+<h3>user1 수정</h3>
+<a href="/user1/list">목록보기</a>
+<form action="/user1/modify" method="post">
+    <table border="1">
+        <tr>
+            <td>번호</td>
+            <td><input type="text" name="no" th:value="${user1DTO.no}" readonly/></td>
+        </tr>
+        <tr>
             <td>이름</td>
-            <td><input type="text" name="name"/></td>
-          </tr>
-          <tr>
+            <td><input type="text" name="name" th:value="${user1DTO.name}"/></td>
+        </tr>
+        <tr>
             <td>생년월일</td>
-            <td><input type="date" name="birth"/></td>
-          </tr>
-          <tr>
+            <td><input type="date" name="birth" th:value="${user1DTO.birth}"/></td>
+        </tr>
+        <tr>
             <td>나이</td>
-            <td><input type="number" name="age"/></td>
-          </tr>
-          <tr>
+            <td><input type="number" name="age" th:value="${user1DTO.age}"/></td>
+        </tr>
+        <tr>
             <td>주소</td>
-            <td><input type="text" name="addr"/></td>
-          </tr>
-          <tr>
+            <td><input type="text" name="addr" th:value="${user1DTO.addr}"/></td>
+        </tr>
+        <tr>
             <td colspan="2" align="right">
                 <input type="submit" value="수정하기"/>
             </td>
-          </tr>
-      </table>
-  </form>
+        </tr>
+    </table>
+
+</form>
 
 </body>
 </html>
