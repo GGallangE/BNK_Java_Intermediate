@@ -1,6 +1,6 @@
 package sub2.shop;
 
 public interface Product {
-    String name = "";
-    int price = 0;
+    public String getName();
+    public int getPrice();
 }

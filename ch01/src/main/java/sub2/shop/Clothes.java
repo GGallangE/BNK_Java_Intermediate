@@ -1,12 +1,22 @@
 package sub2.shop;
 
 public class Clothes implements Product {
-    String name;
-    int price;
+
+    private String name;
+    private int price;
 
     public Clothes(String name, int price) {
-        super();
         this.name = name;
         this.price = price;
+    }
+
+    @Override
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
