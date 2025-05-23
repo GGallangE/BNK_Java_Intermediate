@@ -6,22 +6,22 @@
 </head>
 <body>
 <h3>user2 수정</h3>
-<a href="#">처음으로</a>
-<a href="#">목록이동</a>
+<a href="/">처음으로</a>
+<a href="/user2/list">목록이동</a>
 
-<form action="#" method="post">
+<form action="/user2/modify" method="post">
     <table border="1">
         <tr>
             <td>아이디</td>
-            <td><input type="text" name="uid" readonly></td>
+            <td><input type="text" name="uid" readonly th:value="${user2.uid}"></td>
         </tr>
         <tr>
             <td>이름</td>
-            <td><input type="text" name="name" placeholder="이름 입력"></td>
+            <td><input type="text" name="name" placeholder="이름 입력" th:value="${user2.name}"></td>
         </tr>
         <tr>
             <td>생년월일</td>
-            <td><input type="date" name="birth" placeholder="생년월일 입력"></td>
+            <td><input type="date" name="birth" placeholder="생년월일 입력" th:value="${user2.birth}"></td>
         </tr>
         <tr>
             <td>성별</td>
