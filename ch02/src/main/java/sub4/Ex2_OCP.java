@@ -4,9 +4,6 @@ interface Product {
     double calculatePrice();
 }
 
-/*
-	새로운 상품 클래스가 추가될 때마다 calculatePrice 메서드를 수정, 이는 개방-폐쇄 원칙을 위반
-*/
 class Electronics implements Product {
     private double price;
 
@@ -20,7 +17,7 @@ class Electronics implements Product {
 
     @Override
     public double calculatePrice() {
-        return 0;
+        return price  + price * 0.1;
     }
 }
 
@@ -37,30 +34,28 @@ class Clothing implements Product {
 
     @Override
     public double calculatePrice() {
-        return 0;
+        return price  + price * 0.05;
     }
 }
 
 class PriceCalculator {
-    public double calculatePrice(Object product) {
-        if (product instanceof Electronics) {
-            Electronics electronics = (Electronics) product;
-            return electronics.getPrice() + electronics.getPrice() * 0.1; // 전자제품 10% 추가세금
-        } else if (product instanceof Clothing) {
-            Clothing clothing = (Clothing) product;
-            return clothing.getPrice() + clothing.getPrice() * 0.05; // 의류 5% 추가세금
-        }
-        return 0;
+    public double calculatePrice(Product product) {
+        return product.calculatePrice();
     }
 }
 
 public class Ex2_OCP {
-
     public static void main(String[] args) {
 
         Electronics electronics = new Electronics(100_000);
         Clothing clothing = new Clothing(50_000);
 
+        PriceCalculator priceCalculator = new PriceCalculator();
+        double price = priceCalculator.calculatePrice(electronics);
+        System.out.println(price);
 
+        double clothingPrice = priceCalculator.calculatePrice(clothing);
+        System.out.println(clothingPrice);
     }
+
 }

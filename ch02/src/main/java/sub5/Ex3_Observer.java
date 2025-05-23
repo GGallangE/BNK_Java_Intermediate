@@ -58,12 +58,18 @@ class NewsSubscriber implements Observer {
         System.out.println(this.name + "님, 새로운 뉴스 도착: " + message);
     }
 }
-
 public class Ex3_Observer {
 
     public static void main(String[] args) {
-        NewsPublisher newsPublisher = new NewsPublisher();
-        NewsSubscriber newsSubscriber1 = new NewsSubscriber("김춘추");
-        NewsSubscriber newsSubscriber2 = new NewsSubscriber("김유신");
+
+        NewsPublisher publisher = new NewsPublisher();
+
+        NewsSubscriber subscriber1 = new NewsSubscriber("Kim");
+        NewsSubscriber subscriber2 = new NewsSubscriber("Lee");
+
+        publisher.registerObserver(subscriber1);
+        publisher.registerObserver(subscriber2);
+
+        publisher.publishNews("Today is Good!");
     }
 }

@@ -3,17 +3,14 @@ package sub4;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data
 @AllArgsConstructor
-// 단일 책임 원칙에 위배되는 클래스
-class UserRepository {
+@Data
+class User {
     private String username;
     private String email;
+}
 
-    public UserRepository() {
-
-    }
-
+class UserRepository {
     public void changePassword(String newPassword) {
         // 비밀번호 변경 로직
         System.out.println("Change password");
@@ -23,8 +20,6 @@ class UserRepository {
         // 사용자 정보를 데이터베이스에 저장하는 로직
         System.out.println("Save user");
     }
-
-
 }
 
 class EmailService {
@@ -34,7 +29,9 @@ class EmailService {
     }
 }
 
+
 public class Ex1_SRP {
+
     public static void main(String[] args) {
 
         EmailService emailService = new EmailService();

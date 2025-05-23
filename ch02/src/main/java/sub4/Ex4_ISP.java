@@ -1,12 +1,17 @@
 package sub4;
 
-interface Worker {
+interface Workable {
     void work();
+}
+interface Eatable {
     void eat();
+}
+interface Sleepable {
     void sleep();
 }
 
-class HumanWorker implements Worker {
+
+class HumanWorker implements Workable, Eatable, Sleepable {
     @Override
     public void work() {
         System.out.println("Human is working");
@@ -23,29 +28,20 @@ class HumanWorker implements Worker {
     }
 }
 
-class RobotWorker implements Worker {
+class RobotWorker implements Workable {
     @Override
     public void work() {
         System.out.println("Robot is working");
-    }
-
-    @Override
-    public void eat() {
-        // 로봇은 먹지 않지만 인터페이스 구현을 위해 빈 메서드 또는 예외 처리 필요
-    }
-
-    @Override
-    public void sleep() {
-        // 로봇은 잠들지 않지만 인터페이스 구현을 위해 빈 메서드 또는 예외 처리 필요
     }
 }
 
 public class Ex4_ISP {
     public static void main(String[] args) {
+
         HumanWorker human = new HumanWorker();
         human.eat();
-        human.sleep();
         human.work();
+        human.sleep();
 
         RobotWorker robot = new RobotWorker();
         robot.work();

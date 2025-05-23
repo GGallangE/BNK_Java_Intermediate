@@ -1,8 +1,18 @@
 package sub4;
 
-class Rectangle {
+interface Shape {
+    int getArea();
+}
+
+
+class Rectangle  implements Shape {
     protected int width;
     protected int height;
+
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
     public void setWidth(int width) {
         this.width = width;
@@ -12,37 +22,41 @@ class Rectangle {
         this.height = height;
     }
 
+    @Override
     public int getArea() {
         return width * height;
     }
 }
 
-class Square extends Rectangle {
-    @Override
-    public void setWidth(int width) {
+class Square  implements Shape {
+
+    private int width;
+    private int height;
+
+    public Square(int width) {
         this.width = width;
-        this.height = width; // 정사각형이므로 높이도 자동 설정
+        this.height = width;
     }
 
     @Override
-    public void setHeight(int height) {
-        this.height = height;
-        this.width = height; // 정사각형이므로 너비도 자동 설정
+    public int getArea() {
+        return width * height;
     }
 }
 
 public class Ex3_LSP {
+
     public static void main(String[] args) {
-        Rectangle rect = new Rectangle();
+        Rectangle rect = new Rectangle(5, 10);
         resize(rect); // 예상: 넓이 증가
 
-        Square square = new Square();
+        Square square = new Square(5);
         resize(square); // 예상과 다르게 정사각형의 높이도 함께 증가
     }
 
-    public static void resize(Rectangle rect) {
-        rect.setWidth(5);
-        rect.setHeight(10);
-        System.out.println("Expected area = 50, Actual area = " + rect.getArea());
+    public static void resize(Shape shape) {
+        //shape.setWidth(5);
+        //shape.setHeight(10);
+        System.out.println("Expected area = 50, Actual area = " + shape.getArea());
     }
 }

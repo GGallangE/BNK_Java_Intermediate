@@ -1,6 +1,5 @@
 package sub5;
 
-
 interface Coffee {
     String getDescription();
     int getCost();
@@ -68,12 +67,18 @@ class SugarDecorator implements CoffeeDecorator {
     }
 }
 
-
-
 public class Ex2_Decorator {
+
     public static void main(String[] args) {
 
         Coffee simpleCoffee = new SimpleCoffee();
+        System.out.println(simpleCoffee.getDescription() + ", " + simpleCoffee.getCost());
 
+        CoffeeDecorator milkCoffee = new MilkDecorator(simpleCoffee);
+        System.out.println(milkCoffee.getDescription() + ", " + milkCoffee.getCost());
+
+        CoffeeDecorator sugarMilkCoffee = new SugarDecorator(milkCoffee);
+        System.out.println(sugarMilkCoffee.getDescription() + ", " + sugarMilkCoffee.getCost() + ", " + sugarMilkCoffee.getSize());
     }
+
 }
